@@ -1,10 +1,16 @@
 table, td, th {
 border: solid black;
 border-collapse: collapse;
+margin-left: 10px;
+padding: 5px, 5px, 5px, 5px;
 }
 
 body {
   background-color: salmon;
+}
+
+h1 {
+  display: block; font-size: 2em; margin-top: 0.67em; margin-bottom: 0.67em; margin-left: 0; margin-right: 0; font-weight: bold;
 }
 
 a:link {
@@ -12,9 +18,19 @@ a:link {
 }
 
 a:visited {
-  color: green;
+  color: forestgreen;
 }
 
 p { 
   font-family: Arial, Helvetica, sans-serif;
 }
+
+main > article > section {
+  margin-left: 10px;
+}
+
+
+/*Things I want to do:
+1. find places for all images
+2. make nav more interesting and better placed
+3. Resize images
