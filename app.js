@@ -63,7 +63,6 @@ function Store(name, min, max, avgCookies) {
     tableData.textContent = 'City total: ';
     row.appendChild(tableData);
     table.appendChild(row);
-  
   }
   this.renderBottomRow = function(){
     var table = document.getElementById('tableNumbers');
