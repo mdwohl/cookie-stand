@@ -1,20 +1,24 @@
 'use strict';
 //Matt Petersen & I pair programmed a lot of this. He helped quite a bit with setup and troubleshooting.
-var storesPush = [];
+
+//Skyler helped me clean up and fix multiple errors. Big thanks to him.
+var allStoresArray = [];
 var time = ['6am: ','7am: ','8am: ','9am: ','10am: ','11am: ','12pm: ','1pm: ','2pm: ','3pm: ','4pm: ','5pm: ','6pm: ','7pm: '];
 
 var newStoreForm = document.getElementById('makeNewStore');
-makeNewStore.addEventListener('submit', addStoreToTable);
+makeNewStore.addEventListener('submit', submitHandler);
 
-function addStoreToTable(event){
+function submitHandler(event){
   event.preventDefault();
   var newStoreName = event.target.storeName.value;
-  var minCust = event.target.min.value;
-  var maxCust = event.target.max.value;
-  var newStoreAverage = event.target.average.value;
+  var minCust = parseInt(event.target.min.value);
+  var maxCust = parseInt(event.target.max.value);
+  var newStoreAverage = parseInt(event.target.average.value);
 
-  var addNewStoreToTable = new NewStoreFunction(minCust, maxCust, newStoreAverage, newStoreName);
-  addNewStoreToTable.renderAsTable();
+  var addNewStoreToTable = new NewStoreFunction(newStoreName, minCust, maxCust, newStoreAverage);
+  var getTable = document.getElementById('tableNumbers');
+  getTable.innerHTML = '';
+  renderAllStores();
 }
 //constructor begins here
 
@@ -27,12 +31,12 @@ function NewStoreFunction(name, min, max, avgCookies) {
   this.time = ['6am: ','7am: ','8am: ','9am: ','10am: ','11am: ','12pm: ','1pm: ','2pm: ','3pm: ','4pm: ','5pm: ','6pm: ','7pm: '];
   this.cookieStorageArray = [];
 
-  storesPush.push(this);
+  allStoresArray.push(this);
 }
 NewStoreFunction.prototype.multiplyCustomersByCookieAverage = function() {
-  this.min = Math.ceil(this.min);
-  this.max = Math.floor(this.max);
-  return Math.floor(Math.random() * (this.max - this.min)) + this.min;
+  var customerNumber = Math.floor(Math.random() * (this.max - this.min)) + this.min;
+  var cookiesThisHour = Math.floor(customerNumber * this.avgCookies);
+  return cookiesThisHour;
 };
 //this prototype will calculate the sales per hour
 NewStoreFunction.prototype.calculatePerHour = function() {
@@ -60,11 +64,11 @@ function renderTimeDisplay(){
   for (var i = 0; i < time.length; i++){
     var tableDataTime = document.createElement('td');
     tableDataTime.textContent = time[i];
-    row.appendChild(tableData);
+    row.appendChild(tableDataTime);
   }
   var tableDataCityTotal = document.createElement('td');
   tableDataCityTotal.textContent = 'City total: ';
-  row.appendChild(tableData);
+  row.appendChild(tableDataCityTotal);
   table.appendChild(row);
 };
 
@@ -107,13 +111,13 @@ function renderTotalsBottomRow(){
   var grandTotal = 0;
   for (var i = 0; i < time.length; i++){
     var newTotal = 0;
-    for (var j = 0; j < storesPush.length; j++){
-      grandTotal += storesPush[j].cookieStorageArray[i];
-      newTotal += storesPush[j].cookieStorageArray[i];
+    for (var j = 0; j < allStoresArray.length; j++){
+      grandTotal += allStoresArray[j].cookieStorageArray[i];
+      newTotal += allStoresArray[j].cookieStorageArray[i];
     }
     var tableCell = document.createElement('td');
     tableCell.textContent = newTotal;
-    row.appendChild(tableData);
+    row.appendChild(tableCell);
   }
   var potato = document.createElement('tfoot');
   potato.textContent = grandTotal;
@@ -136,11 +140,17 @@ new NewStoreFunction('Dubai', 11, 38, 3.7);
 new NewStoreFunction('Paris', 20, 38, 2.3);
 new NewStoreFunction('Lima', 2, 16, 4.6);
 
-renderTimeDisplay();
-for(var i = 0; i < storesPush.length; i++){
-  storesPush[i].renderAsTable();
+function renderAllStores(){
+
+  renderTimeDisplay();
+  for(var i = 0; i < allStoresArray.length; i++){
+    allStoresArray[i].renderAsTable();
+  }
+  renderTotalsBottomRow();
 }
-renderTotalsBottomRow();
+
+renderAllStores();
+
 
 
 
