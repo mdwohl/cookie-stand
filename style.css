@@ -7,10 +7,21 @@ padding: 5px, 5px, 5px, 5px;
 
 body {
   background-color: salmon;
+  width: 960px;
+}
+
+#makeNewStore {
+  margin: 60px;
+  float: left;
+}
+
+.bigfish {
+  margin: 15px;
 }
 
 h1 {
-  display: block; font-size: 2em; margin-top: 0.67em; margin-bottom: 0.67em; margin-left: 0; margin-right: 0; font-weight: bold;
+  display: block; font-size: 2em; margin-top: 0.67em; margin-bottom: 0.67em; margin-left: 5px; margin-right: 0; font-weight: bold;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 a:link {
@@ -29,6 +40,42 @@ main > article > section {
   margin-left: 10px;
 }
 
+#tableNumbers {
+  background-color: lightsteelblue;
+}
+
+#newstoreform {
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+p {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 20px;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+ul > li {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
+  margin: 10px
+}
+
+hr {
+  width: 960px;
+}
+
+nav {
+  text-align: center;
+}
+
+#frosted {
+  float: left;
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
 
 /*Things I want to do:
 1. find places for all images
